@@ -6,7 +6,7 @@ class ProjConan(ConanFile):
     name = "proj"
     description = """proj.4 is a library which converts geographic longitude and
                      latitude coordinates into cartesian coordinates."""
-    version = "4.9.2"
+    version = "4.9.3"
     generators = "cmake"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
@@ -21,11 +21,11 @@ class ProjConan(ConanFile):
             self.options.remove("fPIC")
 
     def source(self):
-        zip_name = self.version + "-maintenance.zip"
-        download("https://github.com/OSGeo/proj.4/archive/%s" % zip_name , zip_name)
+        zip_name = self.version + ".zip"
+        download("https://github.com/OSGeo/PROJ/archive/%s" % zip_name , zip_name)
         unzip(zip_name)
         os.unlink(zip_name)
-        os.rename('PROJ-{0}-maintenance'.format(self.version), 'proj')
+        os.rename('PROJ-{0}'.format(self.version), 'proj')
 
     def build(self):
         # produced with `diff -U 1 -p Proj4Config.cmake tmp.cmake`
