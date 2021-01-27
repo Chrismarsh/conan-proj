@@ -28,11 +28,16 @@ class ProjConan(ConanFile):
     
     def _configure_cmake(self):
         cmake = CMake(self)
+        cmake.definitions["BUILD_CCT"] = "OFF"
         cmake.definitions["BUILD_CS2CS"] = "OFF"
-        cmake.definitions["BUILD_PROJ"] = "OFF"
         cmake.definitions["BUILD_GEOD"] = "OFF"
-        cmake.definitions["BUILD_NAD2BIN"] = "OFF"
+        cmake.definitions["BUILD_GIE"] = "OFF"
+        cmake.definitions["BUILD_PROJ"] = "OFF"
+        cmake.definitions["BUILD_PROJINFO"] = "OFF"
+
         cmake.definitions["PROJ4_TESTS"] = "OFF"
+
+        cmake.definitions["CMAKE_BUILD_TYPE"] = "Release"
 
         if self.options.shared == False:
             cmake.definitions["BUILD_SHARED_LIBS"] = "OFF"
