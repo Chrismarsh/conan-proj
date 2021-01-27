@@ -23,7 +23,7 @@ class ProjConan(ConanFile):
     def source(self):
         tools.get(**self.conan_data["sources"][self.version])
 
-        os.rename('PROJ-{0}'.format(self.version), 'proj')
+        os.rename('proj-{0}'.format(self.version), 'proj')
 
     
     def _configure_cmake(self):
