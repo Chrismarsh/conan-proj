@@ -23,7 +23,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
-        gcc: [8]
+        gcc: [7]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
