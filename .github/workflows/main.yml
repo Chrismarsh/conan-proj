@@ -23,6 +23,7 @@ jobs:
     strategy:
       matrix:
         python-version: [3.8]
+        gcc: [gcc-8]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -46,5 +47,7 @@ jobs:
           CONAN_REFERENCE: proj/7.2.1
           CONAN_USERNAME: CHM
           CONAN_CHANNEL: stable
-          CONAN_GCC_VERSIONS: 8
+          CONAN_GCC_VERSIONS: ${{ matrix.gcc }}
+          CC: ${{ matrix.gcc }}
+          CXX: ${{ matrix.gcc }}
 
