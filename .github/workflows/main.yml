@@ -43,4 +43,6 @@ jobs:
         env:
           CONAN_CURRENT_PAGE: gcc_shared
           CONAN_REFERENCE: proj/7.2.1
+          CONAN_USERNAME: CHM
+          CONAN_CHANNEL: stable
 
