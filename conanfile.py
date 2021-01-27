@@ -33,6 +33,7 @@ class ProjConan(ConanFile):
         cmake.definitions["BUILD_GEOD"] = "OFF"
         cmake.definitions["BUILD_GIE"] = "OFF"
         cmake.definitions["BUILD_PROJ"] = "OFF"
+        cmake.definitions["BUILD_PROJSYNC"] = "OFF"
         cmake.definitions["BUILD_PROJINFO"] = "OFF"
 
         cmake.definitions["BUILD_TESTING"] = "OFF"
