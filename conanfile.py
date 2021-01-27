@@ -35,7 +35,7 @@ class ProjConan(ConanFile):
         cmake.definitions["BUILD_PROJ"] = "OFF"
         cmake.definitions["BUILD_PROJINFO"] = "OFF"
 
-        cmake.definitions["PROJ4_TESTS"] = "OFF"
+        cmake.definitions["BUILD_TESTING"] = "OFF"
 
         cmake.definitions["CMAKE_BUILD_TYPE"] = "Release"
 
