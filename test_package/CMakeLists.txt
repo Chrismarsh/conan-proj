@@ -4,7 +4,7 @@ project(test_package)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-add_executable(${PROJECT_NAME} test_package.c)
+add_executable(${PROJECT_NAME} test_package.cpp)
 target_include_directories(${PROJECT_NAME}
   PRIVATE ${CONAN_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} ${CONAN_LIBS})
