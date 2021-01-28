@@ -55,5 +55,5 @@ jobs:
           CONAN_CHANNEL: stable
           CONAN_GCC_VERSIONS: ${{ matrix.gcc }}
           CC: gcc-${{ matrix.gcc }}
-          CXX: gcc-${{ matrix.gcc }}
+          CXX: g++-${{ matrix.gcc }}
 
