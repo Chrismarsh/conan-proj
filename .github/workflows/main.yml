@@ -21,7 +21,7 @@ env:
   CONAN_LOGIN_USERNAME: "chrismarsh"
   CONAN_PASSWORD: ${{ secrets.CONAN_PASSWORD }}
   CONAN_STABLE_BRANCH_PATTERN: "stable/*"
-  CONAN_UPLOAD_ONLY_WHEN_STABLE: 1 # Will only upload when the branch matches "stable/*"
+  CONAN_UPLOAD_ONLY_WHEN_STABLE: "1"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
