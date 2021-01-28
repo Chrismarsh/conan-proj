@@ -90,7 +90,7 @@ jobs:
           CONAN_REFERENCE: proj/7.2.1
           CONAN_USERNAME: CHM
           CONAN_CHANNEL: stable
-          CONAN_APPLE_CLANG_VERSIONS: ${{ apple-clang.gcc }}
+          CONAN_APPLE_CLANG_VERSIONS: ${{ matrix.apple-clang }}
           # CC: gcc-${{ apple-clang.gcc }}
           # CXX: g++-${{ apple-clang.gcc }}
 
