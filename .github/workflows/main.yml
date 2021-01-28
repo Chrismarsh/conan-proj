@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the stable/proj7 branch
   push:
-    branches: [ stable/proj7 ]
   pull_request:
-    branches: [ stable/proj7 ]
+  schedule:
+    - cron: '0 0 * * 0' # run every week
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -40,7 +40,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
         with:
