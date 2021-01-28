@@ -16,14 +16,15 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build-linux:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     
     strategy:
       matrix:
         python-version: [3.8]
-        gcc: [7]
+        os: [macos-latest, ubuntu-latest]
+        gcc: [7,8,9]
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -34,11 +35,11 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Test
+      - name: list gcc
         run: |
           gcc --version
-          gcc-8 --version
           gcc-7 --version
+          gcc-8 --version
           gcc-9 --version
       - name: Install dependencies
         run: |
@@ -56,4 +57,40 @@ jobs:
           CONAN_GCC_VERSIONS: ${{ matrix.gcc }}
           CC: gcc-${{ matrix.gcc }}
           CXX: g++-${{ matrix.gcc }}
+
+
+  build-macs:
+    # The type of runner that the job will run on
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        python-version: [3.8]
+        os: [macos-latest]
+        apple-clang: [11]
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+        
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          pip install conan --upgrade
+          pip install conan_package_tools
+      - name: Build
+        run: |
+          python build.py
+        env:
+          CONAN_CURRENT_PAGE: apple-clang_shared
+          CONAN_REFERENCE: proj/7.2.1
+          CONAN_USERNAME: CHM
+          CONAN_CHANNEL: stable
+          CONAN_APPLE_CLANG_VERSIONS: ${{ apple-clang.gcc }}
+          # CC: gcc-${{ apple-clang.gcc }}
+          # CXX: g++-${{ apple-clang.gcc }}
 
