@@ -9,8 +9,14 @@ class ProjConan(ConanFile):
 
     generators = "cmake"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = "shared=True", "fPIC=True"
+    options = {
+        "shared": [True, False], 
+        "fPIC": [True, False]
+    }
+    default_options = {
+        "shared":True,
+        "fPIC": True
+        }
 
     url="http://github.com/bilke/conan-proj"
     license="https://github.com/OSGeo/proj.4"
