@@ -80,7 +80,7 @@ jobs:
           else
             conan profile update settings.os.Macos.version=`echo "$CFG_OS" | cut -d'-' -f2` default
           fi
-          cat ~/.conan/profile/default
+          cat ~/.conan/profiles/default
         env:
           CFG_OS: ${{matrix.cfg.os}}
 
