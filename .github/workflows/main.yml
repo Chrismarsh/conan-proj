@@ -77,10 +77,10 @@ jobs:
 
           if [ "$RUNNER_OS" == "Linux" ]; then
             conan profile update settings.os.Linux="Linux" default
-            conan profile update settings.os.distro="$CFG_OS" default
+            conan profile update settings.os.Linux.distro="$CFG_OS" default
           else
-            conan profile update settings.os.Macos="Macos"
-            conan profile update settings.os.version=`echo "$CFG_OS" | cut -d'-' -f2` default
+            conan profile update settings.os.Macos="Macos" default
+            conan profile update settings.os.Macos.version=`echo "$CFG_OS" default | cut -d'-' -f2` default
           fi
           cat ~/.conan/profiles/default
         env:
