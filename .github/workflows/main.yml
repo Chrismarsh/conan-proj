@@ -69,6 +69,19 @@ jobs:
               fi
         shell: bash
           
+
+      - name: Setup conan
+        run: |
+          conan config install https://github.com/Chrismarsh/conan-config.git
+
+          if [ "$RUNNER_OS" == "Linux" ]; then
+            conan profile update settings.os.Linux.distro="$CFG_OS" default
+          else
+            conan profile update settings.os.Macos.version=`echo "$CFG_OS" | cut -d'-' -f2` default
+          fi
+        env:
+          CFG_OS: ${{matrix.cfg.os}}
+          
       - name: env linux
         if: startsWith( matrix.cfg.os, 'ubuntu' )
         uses: allenevans/set-env@v2.0.0
