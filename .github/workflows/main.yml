@@ -76,10 +76,8 @@ jobs:
           conan config install https://github.com/Chrismarsh/conan-config.git
 
           if [ "$RUNNER_OS" == "Linux" ]; then
-            conan profile update settings.os=Linux default
             conan profile update settings.os.distro="$CFG_OS" default
           else
-            conan profile update settings.os=Macos default
             conan profile update settings.os.version=`echo "$CFG_OS" | cut -d'-' -f2` default
           fi
           cat ~/.conan/profiles/default
@@ -104,7 +102,6 @@ jobs:
         run: |
           python build.py
         env:
-          COMPILER: ${{matrix.cfg.compiler}}
           CONAN_REFERENCE: proj/${{ matrix.lib-version}}
 
 
