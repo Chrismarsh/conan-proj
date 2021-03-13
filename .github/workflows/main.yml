@@ -76,10 +76,11 @@ jobs:
           conan config install https://github.com/Chrismarsh/conan-config.git
 
           if [ "$RUNNER_OS" == "Linux" ]; then
-            conan profile update settings.os.Linux.distro="$CFG_OS" default
+            conan profile update settings.os.distro="$CFG_OS" default
           else
-            conan profile update settings.os.Macos.version=`echo "$CFG_OS" | cut -d'-' -f2` default
+            conan profile update settings.os.version=`echo "$CFG_OS" | cut -d'-' -f2` default
           fi
+          cat ~/.conan/profiles/default
         env:
           CFG_OS: ${{matrix.cfg.os}}
 
@@ -92,7 +93,7 @@ jobs:
           CXX: g++-${{ matrix.cfg.version }}
 
       - name: env macos
-        if: ${{ matrix.cfg.os  == 'macos-latest' }}
+        if: startsWith( matrix.cfg.os, 'macos' )
         uses: allenevans/set-env@v2.0.0
         with:
           CONAN_APPLE_CLANG_VERSIONS: ${{ matrix.cfg.version }}
@@ -101,7 +102,6 @@ jobs:
         run: |
           python build.py
         env:
-          CONAN_CURRENT_PAGE: ${{matrix.cfg.compiler}}_shared
           CONAN_REFERENCE: proj/${{ matrix.lib-version}}
 
 
