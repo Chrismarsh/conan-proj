@@ -31,10 +31,6 @@ class ProjConan(ConanFile):
 
         os.rename('proj-{0}'.format(self.version), 'proj')
 
-    def requirements(self):
-        self.requires("sqlite3/[>=3.11]")
-        self.requires("libtiff/[>=4.0]")
-        self.requires("libcurl/[>=7.29.0]")
     
     def _configure_cmake(self):
         cmake = CMake(self)
@@ -54,12 +50,6 @@ class ProjConan(ConanFile):
             cmake.definitions["BUILD_SHARED_LIBS"] = "OFF"
         else:
             cmake.definitions["BUILD_SHARED_LIBS"] = "ON"
-
-        cmake.definitions['SQLITE3_INCLUDE_DIR'] = self.deps_cpp_info["sqlite3"].rootpath + '/include/'
-
-        cmake.definitions['TIFF_INCLUDE_DIR'] = self.deps_cpp_info["libtiff"].rootpath + '/include/'
-
-        cmake.definitions['CURL_INCLUDE_DIR'] = self.deps_cpp_info["libcurl"].rootpath + '/include/'
 
         cmake.configure(source_folder='proj', build_folder="build")
 
